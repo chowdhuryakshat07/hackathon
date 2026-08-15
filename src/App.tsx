@@ -27,6 +27,7 @@ export function App() {
   const [selectedReplyAction, setSelectedReplyAction] = useState<ActionItem | null>(null);
   const [isGmailModalOpen, setIsGmailModalOpen] = useState<boolean>(false);
   const [isGmailConnected, setIsGmailConnected] = useState<boolean>(false);
+  const [customClientId, setCustomClientId] = useState<string>('');
 
   // Intelligence Data
   const briefing = useMemo(() => AIIntelligenceEngine.getBriefing(timeframe), [timeframe]);
@@ -208,7 +209,9 @@ export function App() {
         isOpen={isGmailModalOpen}
         onClose={() => setIsGmailModalOpen(false)}
         isGmailConnected={isGmailConnected}
-        onToggleConnect={() => setIsGmailConnected(prev => !prev)}
+        onGoogleSignIn={() => setIsGmailConnected(true)}
+        customClientId={customClientId}
+        onSaveCustomClientId={setCustomClientId}
       />
 
     </div>

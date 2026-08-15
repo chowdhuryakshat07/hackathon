@@ -1,4 +1,4 @@
-import { Email, AICatchupBriefing, ActionItem, ThreadChange, DeadlineItem } from '../types/inbox';
+import { Email, AICatchupBriefing, ActionItem, ThreadChange, DeadlineItem, TimeframeOption } from '../types/inbox';
 
 export class GeminiAiService {
   /**
@@ -78,7 +78,7 @@ Return raw valid JSON only.`;
 
     return {
       briefing: {
-        timeframe: 'LAST_3_DAYS',
+        timeframe: 'LAST_3_DAYS' as TimeframeOption,
         totalEmails: emails.length,
         urgentCount,
         importantCount,
@@ -163,7 +163,7 @@ Return raw valid JSON only.`;
 
     return {
       briefing: {
-        timeframe: 'LAST_3_DAYS',
+        timeframe: 'LAST_3_DAYS' as TimeframeOption,
         totalEmails: emails.length,
         urgentCount,
         importantCount,
@@ -190,7 +190,7 @@ Return raw valid JSON only.`;
   private static getEmptyAnalysis() {
     return {
       briefing: {
-        timeframe: 'LAST_3_DAYS',
+        timeframe: 'LAST_3_DAYS' as TimeframeOption,
         totalEmails: 0,
         urgentCount: 0,
         importantCount: 0,
