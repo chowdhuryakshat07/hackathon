@@ -25,12 +25,13 @@ export class GmailApiService {
    */
   static requestAccessToken(clientId: string): Promise<{ token: string; email?: string }> {
     return new Promise((resolve, reject) => {
-      if (!window.google || !window.google.accounts || !window.google.accounts.oauth2) {
+      const g = (window as any).google;
+      if (!g || !g.accounts || !g.accounts.oauth2) {
         reject(new Error('Google Identity Services SDK not loaded yet.'));
         return;
       }
 
-      const client = window.google.accounts.oauth2.initTokenClient({
+      const client = g.accounts.oauth2.initTokenClient({
         client_id: clientId,
         scope: 'https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/userinfo.email',
         callback: async (response: any) => {
